@@ -764,7 +764,7 @@ var chart7 = echarts.init($('#table7 .content').get(0)).setOption({
 		*/
 
 		setInterval(function(){
-			image = '/1.jpg';
+			image = './1.jpg';
 			index = Math.floor(Math.random()*g_test_point.length);
 			pos = g_test_point[index];
     		createGoods(image,pos.split(','),true,$('.today'));
@@ -873,7 +873,7 @@ var chart7 = echarts.init($('#table7 .content').get(0)).setOption({
             }); */
     		
     		//通过url的方式来加载数据  但是这样的数据点最好不要太多 不然会影响性能  太多的话推荐用上面海量点的方式，但是不支持阴影效果
-    		$.get('/data.txt', function(csv) {
+    		$.get('./data.txt', function(csv) {
                 g_test_point = csv.split('\n');
                 //pointSimplifierIns.setData(g_test_point);
                 //添加多个点  这里使用marker的方式来添加点
