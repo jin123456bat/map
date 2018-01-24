@@ -1,0 +1,1062 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+	<title>地图演示</title>
+	<link rel="stylesheet" href="./iconfont.css" type="text/css" media="all">
+</head>
+<body>
+<style>
+html{
+	overflow: hidden;
+	height:100%;
+	width:100%;
+	margin:0px;
+	padding:0px;
+	white-space: nowrap;
+}
+body{
+	overflow: hidden;
+	white-space: nowrap;
+	height:100%;
+	margin:0px;
+	padding:0px;
+	background-color:rgb(50, 74, 99);
+	color:#c5daff;
+}
+.table{
+	background-color: rgba(15,32,50,0.7);
+    padding-right:27px;
+	padding-left:27px;
+	font-size: 22px;
+    margin-top:7px;
+	margin-bottom:10px;
+	float: left;
+	width: 100%;
+	box-sizing: border-box;
+	height:24%;
+	overflow:hidden;
+	pointer-events:auto;
+	border-radius:4px;
+}
+
+.left .table:first-child{
+	margin-top: 27px;
+}
+
+.title{
+	color:#e4ff00;
+	border-left:5px solid #e4ff00;
+	padding-left:9px;
+	height: 22px;
+    line-height: 22px;
+}
+.item{
+	width:100%;
+	display:block;
+	float:left;
+	font-size:14px;
+	white-space: nowrap;
+	margin-top:15px;
+}
+.table .item:first-child{
+	margin-top:23px;
+}
+.key{
+	height:100%;
+	display:inline-block;
+	width:60%;
+	float:left;	
+}
+.value{
+	height:100%;
+	display:inline-block;
+	width:40%;
+	text-align: right;
+}
+.content{
+	height:200px;
+	width:100%;
+}
+.display-none{
+	display:none !important;
+}
+
+.intro{
+	top: 5px;
+	position: relative;
+	font-size:18px;
+	float:right;
+}
+
+
+.left{
+	z-index:1000;
+	float:left;
+	width:15%;
+	padding:0px 0px;
+	padding-right:5px;
+	box-sizing: border-box;
+	height:100%;
+}
+
+.left .table{
+	padding-top:15px;
+}
+
+.middle{
+	float:left;
+	width:70%;
+	padding-right:5px;
+	padding-left:5px;
+	box-sizing: border-box;
+	height:100%;
+}
+
+.middle .table{
+	margin-top:0px;
+	margin-bottom:0px;
+	border-radius:0px;
+}
+
+#table4{
+	padding-right:0px;
+}
+#table5{
+	font-size:20px;
+	height:15%;
+	padding-top:15px;
+}
+#table5 .side{
+	width:90%;
+	float:left;
+}
+
+.today{
+	float:right !important;
+}
+
+.word{
+	text-align: center;
+	color:#8caaff;
+	font-size:48px;
+}
+
+.increase{
+	display: inline-block;
+    margin-left: 20px;
+    color: #fe3232;
+    font-size: 12px;
+}
+
+.decrease{
+	display: inline-block;
+    margin-left: 20px;
+    color: #2ab400;
+    font-size: 12px;
+}
+
+#table6{
+	height: 15%;
+}
+
+.buttom{
+	font-size:14px;
+	color:#c1c1c1;
+	width: 100%;
+    float: left;	
+}
+
+.right{
+	float:left;
+	width:15%;
+	padding: 0px 0px;
+	padding-left:5px;
+	box-sizing: border-box;
+	height:100%;
+}
+.right .table{
+	padding-top: 15px;
+}
+.right .table:first-child{
+	margin-top: 27px;
+}
+#table7{
+	padding-right:15px;
+}
+#table8{
+	height:15%;
+}
+.label{
+	text-align: center;
+    font-size: 38px;
+    line-height: 100px;
+}
+
+#table9{
+	height:60%;
+}
+
+#map {
+	width:100%;
+	height: 100%;
+	font-family:"微软雅黑";
+	float:left;
+}
+.item ul{
+	padding:5px;
+	margin:5px;
+}
+.item ul li{
+	height:35px;
+	line-height:35px;
+	list-style:none;
+	text-align:left;
+}
+
+.tab{
+	height:100%
+}
+
+.tab .tab-body{
+	height:75%;
+}
+
+.tab .tab-body .item{
+	display:none;
+}
+.tab .tab-body .item.active{
+	display:block;
+}
+
+.tab .tab-header{
+	height:10%;
+}
+
+.tab .tab-header ul{
+	text-align: center;
+    width: 100%;
+    list-style: none;
+	padding: 0px;
+}
+
+.tab .tab-header ul li{
+	display:inline-block;
+	width:30px;
+	height:30px;
+	line-height:30px;
+	cursor:pointer;
+}
+
+.tab .tab-header ul li:hover{
+	color:#546086;
+}
+
+.logo{
+	margin-top:27px;
+	width:100%;
+	text-align:center;
+	margin-bottom: 15px;
+}
+
+.circle{
+	border-radius:20px;
+	background-color:#b4ecff;
+	color:#0e1e2c;
+	font-size:20px;
+	font-weight: bold;
+	line-height:30px;
+	text-align:center;
+}
+</style>
+<body>
+<div id="map">
+
+</div>
+<div style="height: 100%;position: absolute;top: 0px;pointer-events:none;">
+	<div class="left">
+		<div class="table"  id="table1">
+			<div class="title">站点销售统计</div>
+			<div class="item">
+				<div class="key">站点一</div>
+				<div class="value">￥20901/笔</div>
+			</div>
+			<div class="item">
+				<div class="key">站点二</div>
+				<div class="value">￥20901/笔</div>
+			</div>
+			<div class="item">
+				<div class="key">站点三</div>
+				<div class="value">￥20901/笔</div>
+			</div>
+			<div class="item">
+				<div class="key">站点四</div>
+				<div class="value">￥20901/笔</div>
+			</div>
+			<div class="item">
+				<div class="key">站点五</div>
+				<div class="value">￥20901/笔</div>
+			</div>
+		</div>
+		<div class="table"  id="table2">
+			<div class="title">商品销量排名</div>
+			<div class="item">
+				<div class="key">哇哈哈</div>
+				<div class="value">20</div>
+			</div>
+			<div class="item">
+				<div class="key">美汁源</div>
+				<div class="value">10</div>
+			</div>
+			<div class="item">
+				<div class="key">美汁源</div>
+				<div class="value">10</div>
+			</div>
+			<div class="item">
+				<div class="key">美汁源</div>
+				<div class="value">10</div>
+			</div>
+			<div class="item">
+				<div class="key">美汁源</div>
+				<div class="value">10</div>
+			</div>
+		</div>
+		<div class="table"  id="table3">
+			<div class="title">站点销量排名</div>
+			<div class="item">
+				<div class="key">1、站点一</div>
+			</div>
+			<div class="item">
+				<div class="key">2、站点二</div>
+			</div>
+			<div class="item">
+				<div class="key">3、站点三</div>
+			</div>
+			<div class="item">
+				<div class="key">4、站点四</div>
+			</div>
+			<div class="item">
+				<div class="key">5、站点五</div>
+			</div>
+		</div>
+		<div class="table"  id="table4">
+			<div class="title">设备数统计</div>
+			<div class="content">
+			
+			</div>
+		</div>
+	</div>
+	<!-- 地图在map里面 -->
+	<div class="middle">
+		<div class="logo">
+			<img src="./logo.png">
+		</div>
+		<div class="table"  id="table5">
+			<div style="width:100%;border-bottom:1px solid #324251;float:left;">
+				<div style="width:49.5%;border-right:1px solid #324251;float:left;padding-bottom: 15px;">
+					<div class="side total">
+						总交易额<span class="intro">12121笔</span>
+						<div class="word">￥12345678<div class="increase"><i class="iconfont icon-up1"></i>20%</div></div>
+					</div>
+				</div>
+				<div style="width:49.5%;float:left;padding-bottom: 15px;">
+					<div class="side today">
+						今日交易额<span  class="intro">12121笔</span>
+						<div class="word">￥12345678<div class="decrease"><i class="iconfont icon-down-arrow"></i>20%</div></div>
+					</div>
+				</div>
+			</div>
+		</div>
+		<div class="table"  id="table6">
+			<div class="title" style="color:#c5d4ff;border:none;padding-left:0px;">设备销售榜</div>
+			<div class="content"></div>
+		</div>
+		
+	</div>
+	<div class="right">
+		<div class="table" id="table7">
+			<div class="title">
+			复购占比
+			</div>
+			<div class="content">
+			
+			</div>
+		</div>
+		<div class="table"  id="table8">
+			<div class="title">
+			近30天客单价
+			</div>
+			<div class="item">
+				<div class="label">
+				￥15961.23
+				</div>
+			</div>
+		</div>
+		<div class="table"  id="table9">
+			<div class="title">
+			设备类型
+			</div>
+			<div class="tab">
+				<div class="tab-body">
+					<div class="item active">
+						<ul>
+							<li>线上商超</li>
+							<li>按摩椅</li>
+							<li>咖啡机</li>
+							<li>开放式无人售货</li>
+							<li>线上商超</li>
+							<li>按摩椅</li>
+							<li>咖啡机</li>
+							<li>开放式无人售货</li>
+							<li>线上商超</li>
+							<li>按摩椅</li>
+						</ul>
+					</div>
+					<div class="item">
+						<ul>
+							<li>按摩椅</li>
+							<li>咖啡机</li>
+							<li>线上商超</li>
+							<li>开放式无人售货</li>
+							<li>按摩椅</li>
+							<li>咖啡机</li>
+							<li>线上商超</li>
+							<li>开放式无人售货</li>
+							<li>按摩椅</li>
+						</ul>
+					</div>
+				</div>
+				<div class="tab-header">
+					<ul>
+						<li class="circle"><</li>
+						<li class="active">1</li>
+						<li>2</li>
+						<li class="circle">></li>
+					</ul>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- <div style="width:200px;float:right;">
+		<button id="goods" style="float:right;">商品图效果</button>
+		<button id="getCenterPos" style="float:right;">获取当前中心点</button>
+		
+		<div id="rubbish" style="background-color:red; width:100px;height:100px; float:right;">
+		
+		</div>
+		
+		<a style="float:right;" href="./map.rar">打包下载源代码</a>
+	</div> -->
+</div>
+<style>
+/*
+ * 图片的默认样式
+ */
+.marker img{
+	width:0px;
+	height:0px;
+	border-radius:50%;
+}
+/*
+ * 点的颜色
+ */
+.point{
+	width:10px;
+	height: 10px;
+	border-radius: 50%;
+	background-color: #57f506;
+	display: inline-block;
+	box-shadow: 0px 0px 20px #57f506;
+}
+/*
+ * 小圆点的样式
+ */
+.fly{
+	position: absolute;
+    width: 10px;
+    height: 10px;
+    background-color: red;
+}
+</style>
+<!-- 全局js -->
+<script src="http://static.ihappyplus.net/resource/common/js/jquery.min.js?v=2.1.4&__V=20170102"></script>
+<!-- key参数是高德地图自己申请的key，填写到这里就可以了 -->
+<script src="//webapi.amap.com/maps?v=1.3&key=ab981bebbcb97b56e92b530dcee02a68&__V=20170102"></script>
+<!-- 高德地图引用的js -->
+<script src="//webapi.amap.com/ui/1.0/main.js?__V=20170102"></script>
+<script src="./echarts.common.min.js"></script>
+
+<script>
+//tab
+var tab_page = 1;
+$('.tab .tab-header li').on('click',function(){
+	switch($(this).text())
+	{
+		case '<':
+			old_tab = tab_page;
+			tab_page -= 1;
+			break;
+		case '>':
+			old_tab = tab_page;
+			tab_page += 1;
+			break;
+		default:
+			old_tab = tab_page;
+			tab_page = parseInt($(this).text());
+	}
+
+	if(tab_page>0 && $('.tab .tab-body .item:eq('+(tab_page-1)+')').length>0)
+	{
+		$('.tab .tab-body .item').removeClass('active');
+		$('.tab .tab-body .item:eq('+(tab_page-1)+')').addClass('active');
+	}
+	else
+	{
+		tab_page = old_tab;
+	}
+});
+
+</script>
+
+<script>
+var chart4 = echarts.init($('#table4 .content').get(0)).setOption({
+    tooltip: {
+        trigger: 'item',
+        formatter: "{a} <br/>{b}: {c} ({d}%)"
+    },
+    legend: {
+        orient: 'vertical',
+        x: 'left',
+        data:['直接访问','邮件营销','联盟广告','视频广告','搜索引擎'],
+        textStyle:{
+            color:'#c5daff',
+        },
+        top:12,
+        padding: [8, 0]
+    },
+    series: [
+        {
+            name:'设备数统计',
+            type:'pie',
+            center: ['70%', '40%'],
+            radius: ['40%', '60%'],
+            avoidLabelOverlap: false,
+            label: {
+                normal: {
+                    show: false,
+                    position: 'center',
+                    textStyle:{
+                    	color: '#fff',
+                    }
+                },
+                emphasis: {
+                    show: true,
+                    textStyle: {
+                        fontSize: 20,
+                        fontWeight: 'bold',
+                        color:'#fff',
+                    }
+                }
+            },
+            labelLine: {
+                normal: {
+                    show: false
+                }
+            },
+            data:[
+                {value:335, name:'直接访问'},
+                {value:310, name:'邮件营销'},
+                {value:234, name:'联盟广告'},
+                {value:135, name:'视频广告'},
+                {value:1548, name:'搜索引擎'}
+            ]
+        }
+    ]
+});
+
+
+var chart6 = echarts.init($('#table6 .content').get(0)).setOption({
+    tooltip : {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    textStyle:{
+    	color:'#c5d4ff',
+    },
+    legend: {
+        itemHeight:100,
+    	height:100,
+    },
+    grid: {
+        left: 20,
+        bottom: 100,
+        top:10,
+        right:20,
+        containLabel: true,
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : [
+            	'设备1',
+            	'设备2',
+            	'设备3',
+            	'设备4',
+            	'设备5',
+            	'设备6',
+            	'设备7',
+            	'设备8',
+            	'设备9',
+            	'设备10'
+           	]
+        }
+    ],
+    yAxis : [{
+    	type : 'value',
+    	splitLine: {
+            lineStyle: {
+                type: 'dotted',
+                color:'#152535',
+            }
+        }
+    }],
+    series : [{
+	    type:'line',
+	    stack: '次数',
+	    areaStyle: {
+	    	normal: {
+	    		color:{
+	    		    type: 'linear',
+	    		    x: 1,
+	    		    y: 1,
+	    		    x2: 0,
+	    		    y2: 0,
+	    		    colorStops: [{
+	    		        offset: 0, color: '#0ebde5' // 0% 处的颜色 深色
+	    		    }, {
+	    		        offset: 1, color: '#1e769a' // 100% 处的颜色  浅色
+	    		    }],
+	    		    globalCoord: false // 缺省为 false
+	    		},
+	 	   }
+    	},
+    	itemStyle:{
+    		normal:{
+    			opacity:0,
+    		},
+    		emphasis:{
+    			opacity:0,
+    		}
+    	},
+	    lineStyle:{
+	    	normal:{
+	    		color:'#0e8eae',
+	    	}
+	    },
+	    smooth: true,
+	    data: [1,2,3,4,5,6,7,8,9,10]
+    }]
+});
+
+var chart7 = echarts.init($('#table7 .content').get(0)).setOption({
+    tooltip : {
+        trigger: 'axis',
+        axisPointer: {
+            type: 'cross',
+            label: {
+                backgroundColor: '#6a7985'
+            }
+        }
+    },
+    textStyle:{
+    	color:'#c5d4ff',
+    },
+    legend: {
+        data:['复购占比']
+    },
+    grid: {
+        left: 0,
+        right: 0,
+        bottom: 10,
+        top:10,
+        containLabel: true
+    },
+    xAxis : [
+        {
+            type : 'category',
+            boundaryGap : false,
+            data : ['10次','20次','30次','40次','50次','60次','70次']
+        }
+    ],
+    yAxis : [{
+    	type : 'value',
+    	splitLine: {
+            lineStyle: {
+                type: 'dotted',
+                color:'#152535',
+            }
+        }
+    }],
+    series : [{
+	    type:'line',
+	    stack: '次数',
+	    areaStyle: {
+	    	normal: {
+	    		color:{
+	    		    type: 'linear',
+	    		    x: 1,
+	    		    y: 1,
+	    		    x2: 0,
+	    		    y2: 0,
+	    		    colorStops: [{
+	    		        offset: 0, color: '#2e65e7' // 0% 处的颜色 深色
+	    		    }, {
+	    		        offset: 1, color: '#396ad8' // 100% 处的颜色  浅色
+	    		    }],
+	    		    globalCoord: false // 缺省为 false
+	    		},
+	    		opacity:0.7,
+	 	   }
+    	},
+    	itemStyle:{
+    		normal:{
+    			color:'#f1e73b',
+    		},
+    		emphasis:{
+    			color:'#f1e73b',
+    		}
+    	},
+	    lineStyle:{
+	    	normal:{
+	    		color:'#2a52aa',
+	    		
+	    	}
+	    },
+	    data:[120, 132, 101, 134, 90, 230, 210]
+    }]
+});
+
+</script>
+
+<script>
+	//存放ajax请求的测试数据
+	var g_test_point;
+	
+	$(function(){
+		
+		//商品图动画效果演示
+		/*$('#goods').on('click',function(){
+			image = '/1.jpg';
+			index = Math.floor(Math.random()*g_test_point.length);
+			pos = g_test_point[index];
+    		createGoods(image,pos.split(','),true,$('#rubbish'));
+	    });
+		
+		$('#getCenterPos').on('click',function(){
+			alert(map.getCenter().lng+','+map.getCenter().lat);
+		});
+		*/
+
+		setInterval(function(){
+			image = '/1.jpg';
+			index = Math.floor(Math.random()*g_test_point.length);
+			pos = g_test_point[index];
+    		createGoods(image,pos.split(','),true,$('.today'));
+		},3000);
+		
+		
+		var map = new AMap.Map('map', {
+            zoom: 5,
+            zooms:[5,7],//限制缩放级别
+            mapStyle:'amap://styles/cb211bb251f25305a5535de3ffbbb32d',//高德地图中自定义地图  http://lbs.amap.com/dev/mapstyle/index
+            resizeEnable: true,
+           // center:[103.771669,49.039531],//中心点坐标
+        });
+		
+		//map.setLimitBounds(map.getBounds());
+        
+    	
+    	//第一个参数是图片的url  第二个参数是图片消失的位置 url推荐使用base64的方式，防止加载过程中出现图片逐行显示
+    	//第三个参数为true代表图片消失后会出现一个小东西
+    	//第4个参数代表小东西移动到的位置
+    	function createGoods(image,pos,show_fly,fly_pos)
+    	{
+    		var tpl = $(
+    				'<div class="marker">'
+    					+'<img src="'+image+'">'
+    				+'</div>'
+    		);
+    		var marker = new AMap.Marker({
+                content:tpl.get(0),
+                position:pos,
+                map:map,
+                offset: new AMap.Pixel(0, -10),
+                zIndex:99999,
+            });
+    		tpl.find('img').on('load',function(){
+    			$(this).css({
+    				width:'0px',
+    				height:'0px',
+    				marginLeft:'0px',
+    				position: 'absolute',
+    				top:'10px',
+    			});
+
+    			$(this).animate({
+    				width:'100px',
+    				height:'100px',
+    				marginLeft:'-50px',
+    				top:'-100px',
+    			},1000,'swing');
+
+    			$(this).animate({
+    				width:'10px',
+    				height:'10px',
+    				marginLeft:'0px',
+    				top:'10px',
+    			},2000,'swing',function(){
+    				//一个新的图像 
+    				var new_img = $(this).clone();
+    				new_img.css({
+    					top:$(this).offset().top,
+    					left:$(this).offset().left,
+    					borderRadius:'50%',
+    				});
+    				//把新的图像放在body里面，解决图像移动到地图外面消失的问题，在地图内部div不能移动超过map的范围
+    				$('body').append(new_img);
+    				map.remove(marker);
+    				new_img.animate({
+    					top:fly_pos.offset().top+'px',
+    					left:fly_pos.offset().left+'px',
+    				},1000,'swing',function(){
+    					$(this).remove();
+    				});
+    			});
+    		});
+    	}
+    	
+      	//禁止地图平移
+    	//map.setStatus({dragEnable: false});
+
+    	function initPage(DistrictExplorer,PointSimplifier, $) {
+    		//隐藏高德地图的logo
+    		$('.amap-logo,.amap-copyright').css('cssText','display:none !important;');
+    		
+    		//海量点初始化
+    		/* var pointSimplifierIns = new PointSimplifier({
+    			map: map,
+    			zIndex:9,
+    			autoSetFitView:false,
+    			getPosition: function(item) {
+                    if (!item) {
+                        return null;
+                    }
+                    var parts = item.split(',');
+                    return [parseFloat(parts[0]), parseFloat(parts[1])];
+                },
+                renderOptions: {
+                	eventSupport: false, //禁止事件,对性能更友好
+                    //点的样式
+                    pointStyle: {
+                    	content: 'circle',
+                        fillStyle: '#57f506',
+                        width: 15,
+                        height: 15,
+                    }
+                }
+            }); */
+    		
+    		//通过url的方式来加载数据  但是这样的数据点最好不要太多 不然会影响性能  太多的话推荐用上面海量点的方式，但是不支持阴影效果
+    		$.get('/data.txt', function(csv) {
+                g_test_point = csv.split('\n');
+                //pointSimplifierIns.setData(g_test_point);
+                //添加多个点  这里使用marker的方式来添加点
+                $.each(g_test_point,function(index,value){
+                	var marker = new AMap.Marker({
+                        content:'<div class="point"></div>',
+                        position:value.split(','),
+                        map:map,
+                        offset: new AMap.Pixel(-2, -11),
+                        zIndex:99999,
+                    });
+                });
+            });
+    		
+    		
+    		var districtExplorer = new DistrictExplorer({
+                eventSupport: true, //打开事件支持
+                map: map
+            });
+    		
+    		//当前聚焦的区域
+            var currentAreaNode = null;
+    		
+    		//鼠标hover提示内容
+            var $tipMarkerContent = $('<div class="tipMarker top" style="white-space: nowrap;font-size:14px;"></div>');
+    		
+            var tipMarker = new AMap.Marker({
+                content: $tipMarkerContent.get(0),
+                offset: new AMap.Pixel(0, 0),
+                bubble: true,
+                zIndex:999999,
+            });
+            
+          	//根据Hover状态设置相关样式
+            function toggleHoverFeature(feature, isHover, position) {
+                tipMarker.setMap(isHover ? map : null);
+                if (!feature) {
+                    return;
+                }
+                var props = feature.properties;
+                if (isHover) {
+                    //更新提示内容
+                    $tipMarkerContent.html(props.name);
+                    //更新位置
+                    tipMarker.setPosition(position || props.center);
+                }
+                //更新相关多边形的样式
+                var polys = districtExplorer.findFeaturePolygonsByAdcode(props.adcode);
+                for (var i = 0, len = polys.length; i < len; i++) {
+                    polys[i].setOptions({
+                        fillOpacity: isHover ? 0.5 : 0.2
+                    });
+                }
+            }
+            
+          	//监听feature的hover事件
+            districtExplorer.on('featureMouseout featureMouseover', function(e, feature) {
+                toggleHoverFeature(feature, e.type === 'featureMouseover',
+                    e.originalEvent ? e.originalEvent.lnglat : null);
+            });
+          	
+          	//监听鼠标在feature上滑动
+            districtExplorer.on('featureMousemove', function(e, feature) {
+                //更新提示位置
+                tipMarker.setPosition(e.originalEvent.lnglat);
+            });
+          	
+          	//feature被点击
+            districtExplorer.on('featureClick', function(e, feature) {
+                var props = feature.properties;
+                //如果存在子节点
+                if (props.childrenNum > 0) {
+                    //切换聚焦区域
+                    switch2AreaNode(props.adcode);
+                }
+            });
+          	
+            //外部区域被点击
+            districtExplorer.on('outsideClick', function(e) {
+                districtExplorer.locatePosition(e.originalEvent.lnglat, function(error, routeFeatures) {
+                    if (routeFeatures && routeFeatures.length > 1) {
+                        //切换到省级区域
+                        switch2AreaNode(routeFeatures[1].properties.adcode);
+                    } else {
+                        //切换到全国
+                        switch2AreaNode(100000);
+                    }
+                }, {
+                    levelLimit: 2
+                });
+            });
+            
+            
+          	//绘制某个区域的边界
+            function renderAreaPolygons(areaNode) {
+                //更新地图视野
+                console.log(areaNode.getBounds());
+                map.setBounds(areaNode.getBounds(), null, null, true);
+                //清除已有的绘制内容
+                districtExplorer.clearFeaturePolygons();
+                //绘制父区域
+                districtExplorer.renderParentFeature(areaNode, {
+                    cursor: 'default',
+                    bubble: true,
+                    strokeColor: 'black', //线颜色
+                    strokeOpacity: 1, //线透明度
+                    strokeWeight: 1, //线宽
+                    fillColor: null, //填充色
+                    fillOpacity: 0.35, //填充透明度
+                });
+            }
+          	
+            //切换区域后刷新显示内容
+            function refreshAreaNode(areaNode) {
+                districtExplorer.setHoverFeature(null);
+                renderAreaPolygons(areaNode);
+            }
+            
+            //切换区域
+            function switch2AreaNode(adcode, callback) {
+                if (currentAreaNode && ('' + currentAreaNode.getAdcode() === '' + adcode)) {
+                    return;
+                }
+                loadAreaNode(adcode, function(error, areaNode) {
+                    if (error) {
+                        if (callback) {
+                            callback(error);
+                        }
+                        return;
+                    }
+                    currentAreaNode = window.currentAreaNode = areaNode;
+                    //设置当前使用的定位用节点
+                    districtExplorer.setAreaNodesForLocating([currentAreaNode]);
+                    refreshAreaNode(areaNode);
+                    if (callback) {
+                        callback(null, areaNode);
+                    }
+                    
+                    if(adcode==100000)
+                   	{
+                        map.setCenter([103.771669,39.039531]);
+                    }
+                });
+            }
+          	
+          	//加载区域
+            function loadAreaNode(adcode, callback) {
+                districtExplorer.loadAreaNode(adcode, function(error, areaNode) {
+                    if (error) {
+                        if (callback) {
+                            callback(error);
+                        }
+                        console.error(error);
+                        return;
+                    }
+                    if (callback) {
+                        callback(null, areaNode);
+                    }
+                });
+            }
+          	
+          	//全国
+            switch2AreaNode(100000);
+          	
+            
+    	}
+    	
+    	
+    	
+
+    	
+        
+    	AMapUI.load(['ui/geo/DistrictExplorer','ui/misc/PointSimplifier', 'lib/$'], function(DistrictExplorer,PointSimplifier, $) {
+    		//加载海量点控件
+            window.pointSimplifierIns = PointSimplifier;
+    		window.DistrictExplorer = DistrictExplorer;
+            //启动页面
+            initPage(DistrictExplorer,PointSimplifier, $);
+        });
+    	
+    })
+</script>
+
+</body>
+</body>
+</html>
